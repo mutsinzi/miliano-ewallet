@@ -45,7 +45,7 @@ Follow these steps to get your local development environment running:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/miliano-ewallet.git
+git clone https://github.com/mutsinzi/miliano-ewallet.git
 cd miliano-ewallet
 ```
 
