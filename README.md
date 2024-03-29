@@ -26,7 +26,7 @@ This strategy focuses on using best practices in software engineering, promoting
 |  | Load Testing | Simulate traffic for 1 million users using tools like JMeter or Locust to validate scalability and identify bottlenecks. |
 |  | User Acceptance Testing (UAT) | Coordinate with business teams for UAT to ensure the system meets business requirements and user expectations. |
 | **Phase 4: Deployment** | Pilot Launch | Roll out the system to a limited user base to gather real-world usage data, monitor performance, and collect feedback. |
-|  | Monitoring and Optimization | Implement monitoring tools (e.g., Prometheus, Grafana) to track system performance post-launch. Optimize based on insights gathered. |
+|  | Monitoring and Optimization | Implement monitoring tools (e.g., PM2, Prometheus, Grafana) to track system performance post-launch. Optimize based on insights gathered. |
 
 
 # Setup
@@ -61,6 +61,19 @@ npm install
 npm run dev
 ```
 
+### Start App with PM2 (Optional)
+
+Start Application with PM2 in cluster mode for optimal load balancing
+
+
+**Install PM2:**
+```bash
+npm install pm2 -g
+```
+
+```bash
+pm2 start [project_dir]/app.js -i max
+```
 ### Features 💡
 
 - Redis Caching
