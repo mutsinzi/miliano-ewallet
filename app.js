@@ -1,9 +1,12 @@
 import bodyParser from 'body-parser';
-import express from 'express';
-import connectDB from './config/db.js';
-import routes from './routes';
 import { config } from 'dotenv';
-import respondMiddleware from './middleware/respond.middleware.js'; 
+import express from 'express';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import connectDB from './config/db.js';
+import { options } from './docs';
+import respondMiddleware from './middleware/respond.middleware.js';
+import routes from './routes';
 
 config()
 
@@ -15,6 +18,9 @@ connectDB();
 app.use(bodyParser.json());
 app.use(respondMiddleware)
 
+const swaggerSpec = swaggerJsdoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/v1', routes);
 
 app.use((req, res, next) => {
