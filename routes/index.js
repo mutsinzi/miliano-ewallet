@@ -1,7 +1,9 @@
 import express from 'express';
-import customerRoutes from './customer.route'
-import walletRoutes from './wallet.route'
-import transactionRoutes from './transaction.route'
+import authRoutes from './auth.route';
+import customerRoutes from './customer.route';
+import transactionRoutes from './transaction.route';
+import walletRoutes from './wallet.route';
+import { protect } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
@@ -11,7 +13,8 @@ router.get('/', (req, res) => {
 });
 
 router.use('/customers', customerRoutes);
-router.use('/wallets', walletRoutes);
-router.use('/transactions', transactionRoutes);
+router.use('/auth', authRoutes);
+router.use('/wallets', protect, walletRoutes);
+router.use('/transactions', protect, transactionRoutes);
 
 export default router;
