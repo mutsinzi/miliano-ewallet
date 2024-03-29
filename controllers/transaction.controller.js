@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Transaction from '../models/transaction.model.js';
 import Wallet from '../models/wallet.model.js';
+import redis from '../config/redis.js';
 
 export const createTransaction = async (req, res) => {
   const session = await mongoose.startSession();
@@ -37,6 +38,12 @@ export const createTransaction = async (req, res) => {
 
     await session.commitTransaction(); 
     session.endSession(); 
+
+    // invalidate wallets cache if it's been created
+    const cachedWallets = await redis.get('wallets');
+    if(cachedWallets){
+      await redis.del('wallets');
+    }
 
     res.respond({ transactionId: transaction._id, currentBalance: wallet.balance }, 'Transaction created successfully', 201);
   } catch (error) {
