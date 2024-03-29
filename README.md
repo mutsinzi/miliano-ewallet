@@ -61,19 +61,6 @@ npm install
 npm run dev
 ```
 
-### Start App with PM2 (Optional)
-
-Start Application with PM2 in cluster mode for optimal load balancing
-
-
-**Install PM2:**
-```bash
-npm install pm2 -g
-```
-
-```bash
-pm2 start [project_dir]/app.js -i max
-```
 ### Features 💡
 
 - Redis Caching
