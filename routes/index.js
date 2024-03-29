@@ -3,7 +3,6 @@ import authRoutes from './auth.route';
 import customerRoutes from './customer.route';
 import transactionRoutes from './transaction.route';
 import walletRoutes from './wallet.route';
-import { protect } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
