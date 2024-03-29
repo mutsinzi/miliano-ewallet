@@ -23,7 +23,7 @@ export const getWallets = async (req, res) => {
       return res.respond(JSON.parse(cachedWallets), 'Wallets fetched successfully from cache');
     }
 
-    const wallets = await Wallet.find();
+    const wallets = await Wallet.find().select('-password -__v');
 
     // Store the wallets list in Redis
     await redis.set('wallets', JSON.stringify(wallets), 'EX', 3600);
