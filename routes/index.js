@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.use('/customers', customerRoutes);
 router.use('/auth', authRoutes);
-router.use('/wallets', protect, walletRoutes);
-router.use('/transactions', protect, transactionRoutes);
+router.use('/wallets', walletRoutes);
+router.use('/transactions', transactionRoutes);
 
 export default router;
